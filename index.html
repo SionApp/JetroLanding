@@ -336,6 +336,86 @@
         </div>
       </section>
 
+      <!-- ══════════════════ VIDEO ══════════════════ -->
+      <section id="video" class="bg-brand-950 py-20 lg:py-24">
+        <div class="mx-auto max-w-content px-5">
+          <div class="mx-auto max-w-2xl text-center text-white">
+            <p class="text-sm font-semibold uppercase tracking-wide text-gold-400">Video</p>
+            <h2 class="font-display mt-3 text-3xl font-bold sm:text-4xl">
+              Mirá JETRO en acción
+            </h2>
+            <p class="mt-3 text-white/70">75 segundos que explican por qué tu iglesia lo necesita.</p>
+          </div>
+
+          <!-- Contenedor del video — cambiá el data-src por el link de YouTube/Vimeo cuando esté listo -->
+          <div
+            class="relative mx-auto mt-10 max-w-3xl overflow-hidden rounded-2xl shadow-2xl shadow-brand-950/60"
+            id="video-wrapper"
+            data-youtube=""
+          >
+            <!-- Placeholder hasta que haya video real -->
+            <div
+              id="video-placeholder"
+              class="relative aspect-video w-full cursor-pointer bg-brand-900"
+              role="button"
+              tabindex="0"
+              aria-label="Ver video de JETRO"
+            >
+              <!-- fondo animado sutil -->
+              <div class="absolute inset-0 opacity-20 bg-[radial-gradient(rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[length:20px_20px]"></div>
+
+              <!-- logo centrado -->
+              <div class="absolute inset-0 flex flex-col items-center justify-center gap-6">
+                <div class="flex items-center gap-3">
+                  <span class="grid h-14 w-14 place-items-center rounded-2xl bg-brand-700 shadow-lg">
+                    <svg viewBox="0 0 200 200" class="h-14 w-14" aria-hidden="true">
+                      <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M86 64 L150 64" stroke-width="22"/>
+                        <path d="M124 64 L124 124 Q124 150 96 150 Q70 150 68 126" stroke-width="26"/>
+                      </g>
+                      <circle cx="150" cy="64" r="13" fill="#F59E0B"/>
+                    </svg>
+                  </span>
+                  <span class="font-display text-3xl font-extrabold text-white">JETRO</span>
+                </div>
+
+                <!-- botón play -->
+                <button
+                  class="group flex h-20 w-20 items-center justify-center rounded-full bg-gold-500 shadow-xl shadow-gold-500/30 transition hover:bg-gold-400 hover:scale-105 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-400"
+                  aria-label="Reproducir video"
+                  onclick="openVideoModal()"
+                >
+                  <svg class="ml-1 h-8 w-8 text-ink" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </button>
+
+                <p class="text-sm text-white/50">Video promo · 1 min 15 seg</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Modal de video (se activa cuando hay URL real) -->
+      <div
+        id="video-modal"
+        class="fixed inset-0 z-50 hidden items-center justify-center bg-black/80 p-4 backdrop-blur-sm"
+        role="dialog"
+        aria-modal="true"
+        aria-label="Video de JETRO"
+        onclick="closeVideoModal(event)"
+      >
+        <div class="relative w-full max-w-4xl">
+          <button
+            class="absolute -top-10 right-0 text-white/70 hover:text-white text-sm font-semibold"
+            onclick="closeVideoModal()"
+            aria-label="Cerrar video"
+          >Cerrar ✕</button>
+          <div class="aspect-video w-full overflow-hidden rounded-2xl bg-black" id="video-frame"></div>
+        </div>
+      </div>
+
       <!-- ══════════════════ LOGOS / TRUST ══════════════════ -->
       <section class="border-b border-slate-200 bg-slate-50 py-6">
         <p class="mx-auto max-w-content px-5 text-center text-sm text-slate-500">
@@ -716,6 +796,35 @@
         { rootMargin: '0px 0px -10% 0px' }
       );
       document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+
+    <script>
+      // ── Video modal ──
+      // Para activar el video real: poné el YouTube ID en data-youtube del #video-wrapper
+      // Ej: <div id="video-wrapper" data-youtube="dQw4w9WgXcQ">
+      function openVideoModal() {
+        const yt = document.getElementById('video-wrapper')?.dataset.youtube;
+        const modal = document.getElementById('video-modal');
+        const frame = document.getElementById('video-frame');
+        if (yt) {
+          frame.innerHTML = `<iframe class="w-full h-full" src="https://www.youtube.com/embed/${yt}?autoplay=1&rel=0" allow="autoplay; fullscreen" allowfullscreen frameborder="0"></iframe>`;
+          modal.classList.remove('hidden');
+          modal.classList.add('flex');
+          document.body.style.overflow = 'hidden';
+        } else {
+          // Sin video aún: scroll suave a contacto
+          document.getElementById('contacto').scrollIntoView({ behavior: 'smooth' });
+        }
+      }
+      function closeVideoModal(e) {
+        if (e && e.target !== document.getElementById('video-modal') && !e.target.closest('button')) return;
+        const modal = document.getElementById('video-modal');
+        modal.classList.add('hidden');
+        modal.classList.remove('flex');
+        document.getElementById('video-frame').innerHTML = '';
+        document.body.style.overflow = '';
+      }
+      document.addEventListener('keydown', e => { if (e.key === 'Escape') closeVideoModal(); });
     </script>
 
     <!-- Red de nodos 3D en el hero (multiplicación de células). Deferida: no bloquea el LCP. -->
