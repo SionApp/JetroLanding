@@ -1,0 +1,870 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JETRO — Software de discipulado y células para iglesias</title>
+    <meta
+      name="description"
+      content="JETRO es el software de discipulado celular para iglesias: organiza tu jerarquía de liderazgo, células y zonas, con reportes en tiempo real y app móvil. Hecho por gente que vive el modelo celular."
+    />
+    <meta name="author" content="JETRO" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#1E40AF" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="canonical" href="https://jetro-landing.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="JETRO" />
+    <meta property="og:url" content="https://jetro-landing.vercel.app/" />
+    <meta property="og:title" content="JETRO — Software de discipulado y células para iglesias" />
+    <meta
+      property="og:description"
+      content="Discipulado, células, zonas y reportes en un solo lugar. La app de gestión que tu equipo de liderazgo va a querer usar."
+    />
+    <meta property="og:image" content="https://jetro-landing.vercel.app/og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="JETRO — software de discipulado para iglesias" />
+    <meta property="og:locale" content="es_LA" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JETRO — Software de discipulado para iglesias" />
+    <meta
+      name="twitter:description"
+      content="Discipulado, células, zonas y reportes en un solo lugar. La app que tu equipo de liderazgo va a querer usar."
+    />
+    <meta name="twitter:image" content="https://jetro-landing.vercel.app/og-image.png" />
+
+    <!-- Structured data: ayuda a Google a entender qué es "JETRO" -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "SoftwareApplication",
+        "name": "JETRO",
+        "alternateName": "JETRO — Software de discipulado para iglesias",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web, Android",
+        "url": "https://jetro-landing.vercel.app/",
+        "description": "Software de discipulado celular para iglesias: jerarquía de liderazgo, células, zonas, asistencia, metas y reportes en tiempo real, con app móvil.",
+        "inLanguage": "es",
+        "offers": { "@type": "Offer", "availability": "https://schema.org/PreOrder" },
+        "publisher": {
+          "@type": "Organization",
+          "name": "JETRO",
+          "url": "https://jetro-landing.vercel.app/"
+        }
+      }
+    </script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              brand: {
+                50: '#EEF3FF',
+                100: '#D9E2FF',
+                200: '#BCCCFF',
+                400: '#5B79F0',
+                500: '#3B5BDB',
+                600: '#2945C0',
+                700: '#1E40AF',
+                800: '#1E3A8A',
+                900: '#172554',
+                950: '#0F1B45',
+              },
+              gold: { 400: '#FBBF24', 500: '#F59E0B', 600: '#D97706' },
+              ink: '#0B1220',
+            },
+            fontFamily: {
+              display: ['"Bricolage Grotesque"', 'system-ui', 'sans-serif'],
+              sans: ['Inter', 'system-ui', 'sans-serif'],
+            },
+            maxWidth: { content: '72rem' },
+          },
+        },
+      };
+    </script>
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: Inter, system-ui, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+      .font-display {
+        font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+        letter-spacing: -0.02em;
+      }
+      /* Reveal on scroll */
+      .reveal {
+        opacity: 0;
+        transform: translateY(16px);
+        transition:
+          opacity 0.6s ease,
+          transform 0.6s ease;
+      }
+      .reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+        .reveal {
+          opacity: 1;
+          transform: none;
+          transition: none;
+        }
+      }
+      /* Subtle dotted texture for the hero */
+      .hero-dots {
+        background-image: radial-gradient(rgba(255, 255, 255, 0.14) 1px, transparent 1px);
+        background-size: 22px 22px;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white text-ink antialiased">
+    <a
+      href="#contenido"
+      class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-brand-700 focus:px-4 focus:py-2 focus:text-white"
+      >Saltar al contenido</a
+    >
+
+    <!-- ══════════════════ NAV ══════════════════ -->
+    <header class="sticky top-0 z-40 border-b border-slate-200/70 bg-white/85 backdrop-blur-md">
+      <nav
+        class="mx-auto flex h-16 max-w-content items-center justify-between gap-4 px-5"
+        aria-label="Principal"
+      >
+        <a href="#" class="flex items-center gap-2.5" aria-label="JETRO — inicio">
+          <span class="grid h-9 w-9 place-items-center rounded-xl bg-brand-700">
+            <svg viewBox="0 0 200 200" class="h-9 w-9" aria-hidden="true">
+              <g
+                fill="none"
+                stroke="#fff"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M86 64 L150 64" stroke-width="22" />
+                <path d="M124 64 L124 124 Q124 150 96 150 Q70 150 68 126" stroke-width="26" />
+              </g>
+              <circle cx="150" cy="64" r="13" fill="#F59E0B" />
+            </svg>
+          </span>
+          <span class="font-display text-xl font-extrabold tracking-tight text-ink">JETRO</span>
+        </a>
+
+        <div class="hidden items-center gap-8 md:flex">
+          <a href="#problema" class="text-sm font-medium text-slate-600 hover:text-ink">Por qué</a>
+          <a href="#caracteristicas" class="text-sm font-medium text-slate-600 hover:text-ink"
+            >Características</a
+          >
+          <a href="#modulos" class="text-sm font-medium text-slate-600 hover:text-ink">Módulos</a>
+          <a href="#precio" class="text-sm font-medium text-slate-600 hover:text-ink">Precio</a>
+        </div>
+
+        <a
+          href="#contacto"
+          class="inline-flex items-center gap-2 rounded-xl bg-brand-700 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-brand-800 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-700"
+        >
+          Solicitar demo
+        </a>
+      </nav>
+    </header>
+
+    <main id="contenido">
+      <!-- ══════════════════ HERO ══════════════════ -->
+      <section class="relative overflow-hidden bg-brand-700 text-white">
+        <canvas
+          id="bg3d"
+          class="pointer-events-none absolute inset-0 z-0 h-full w-full"
+          aria-hidden="true"
+        ></canvas>
+        <div class="hero-dots absolute inset-0 z-0 opacity-40" aria-hidden="true"></div>
+        <div
+          class="pointer-events-none absolute -right-32 -top-40 h-[32rem] w-[32rem] rounded-full bg-brand-500/40 blur-3xl"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="pointer-events-none absolute -bottom-40 -left-24 h-96 w-96 rounded-full bg-brand-900/50 blur-3xl"
+          aria-hidden="true"
+        ></div>
+
+        <div
+          class="relative z-10 mx-auto grid max-w-content items-center gap-12 px-5 py-20 lg:grid-cols-2 lg:py-28"
+        >
+          <div>
+            <span
+              class="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-xs font-semibold text-white/90"
+            >
+              <span class="h-1.5 w-1.5 rounded-full bg-gold-400"></span>
+              Hecho por gente que vive el modelo celular
+            </span>
+
+            <h1 class="font-display mt-5 text-4xl font-extrabold leading-[1.05] sm:text-5xl lg:text-6xl">
+              El sistema de discipulado para iglesias que
+              <span class="text-gold-400">multiplican.</span>
+            </h1>
+
+            <p class="mt-6 max-w-xl text-lg leading-relaxed text-white/80">
+              JETRO organiza tu jerarquía de liderazgo, tus células y tus zonas — con reportes en
+              tiempo real y una app móvil que tu equipo va a <em class="not-italic text-white">querer</em>
+              usar. Adiós a las planillas y los grupos de WhatsApp.
+            </p>
+
+            <div class="mt-8 flex flex-col gap-3 sm:flex-row">
+              <a
+                href="#contacto"
+                class="inline-flex items-center justify-center gap-2 rounded-xl bg-gold-500 px-6 py-3.5 text-base font-semibold text-ink shadow-sm transition hover:bg-gold-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              >
+                Solicitar una demo
+                <svg class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 10a.75.75 0 0 1 .75-.75h10.638L10.23 5.29a.75.75 0 1 1 1.04-1.08l5.5 5.25a.75.75 0 0 1 0 1.08l-5.5 5.25a.75.75 0 1 1-1.04-1.08l4.158-3.96H3.75A.75.75 0 0 1 3 10Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </a>
+              <a
+                href="#caracteristicas"
+                class="inline-flex items-center justify-center gap-2 rounded-xl border border-white/25 bg-white/5 px-6 py-3.5 text-base font-semibold text-white transition hover:bg-white/10"
+              >
+                Ver cómo funciona
+              </a>
+            </div>
+
+            <dl class="mt-12 grid max-w-md grid-cols-3 gap-6 border-t border-white/15 pt-8">
+              <div>
+                <dt class="font-display text-2xl font-bold text-white">5 niveles</dt>
+                <dd class="mt-1 text-xs text-white/65">de jerarquía de liderazgo</dd>
+              </div>
+              <div>
+                <dt class="font-display text-2xl font-bold text-white">App nativa</dt>
+                <dd class="mt-1 text-xs text-white/65">Android + web</dd>
+              </div>
+              <div>
+                <dt class="font-display text-2xl font-bold text-white">Modular</dt>
+                <dd class="mt-1 text-xs text-white/65">instalás lo que usás</dd>
+              </div>
+            </dl>
+          </div>
+
+          <!-- Phone mockup: dashboard mobile real de JETRO -->
+          <div class="relative mx-auto w-full max-w-[300px]">
+            <div
+              class="relative rounded-[2.5rem] border border-white/15 bg-brand-950/40 p-3 shadow-2xl shadow-brand-950/40"
+            >
+              <div class="overflow-hidden rounded-[1.9rem] bg-slate-50">
+                <!-- hero del dashboard -->
+                <div class="relative bg-brand-700 px-4 pb-12 pt-6 text-white">
+                  <div class="flex items-center gap-3">
+                    <div
+                      class="grid h-10 w-10 place-items-center rounded-full bg-white/15 text-base font-bold ring-1 ring-white/25"
+                    >
+                      P
+                    </div>
+                    <div>
+                      <p class="text-[11px] text-white/70">Buenos días,</p>
+                      <p class="font-display text-lg font-bold leading-tight">Pastor</p>
+                    </div>
+                  </div>
+                </div>
+                <!-- stats flotando -->
+                <div class="relative z-10 -mt-9 grid grid-cols-2 gap-2.5 px-4">
+                  <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                    <div class="grid h-7 w-7 place-items-center rounded-lg bg-brand-700/10 text-brand-700">
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4 0-8 2-8 5v1h16v-1c0-3-4-5-8-5Z"/></svg>
+                    </div>
+                    <p class="mt-1.5 text-xl font-bold tabular-nums">312</p>
+                    <p class="text-[11px] text-slate-500">Miembros</p>
+                  </div>
+                  <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                    <div class="grid h-7 w-7 place-items-center rounded-lg bg-emerald-500/10 text-emerald-600">
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M4 4h6v6H4zM14 14h6v6h-6zM7 10v4h7"/></svg>
+                    </div>
+                    <p class="mt-1.5 text-xl font-bold tabular-nums">34</p>
+                    <p class="text-[11px] text-slate-500">Grupos</p>
+                  </div>
+                  <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                    <div class="grid h-7 w-7 place-items-center rounded-lg bg-slate-200 text-slate-500">
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M15 12a4 4 0 1 0-6 0 7 7 0 0 0-5 6h16a7 7 0 0 0-5-6Zm6-3h-2V7h-2v2h-2v2h2v2h2v-2h2z"/></svg>
+                    </div>
+                    <p class="mt-1.5 text-xl font-bold tabular-nums">12</p>
+                    <p class="text-[11px] text-slate-500">Nuevos (30d)</p>
+                  </div>
+                  <div class="rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                    <div class="grid h-7 w-7 place-items-center rounded-lg bg-gold-500/15 text-gold-600">
+                      <svg class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2 1 21h22L12 2Zm0 6 6.5 11h-13L12 8Zm-1 4v3h2v-3h-2Zm0 4v2h2v-2h-2Z"/></svg>
+                    </div>
+                    <p class="mt-1.5 text-xl font-bold tabular-nums text-gold-600">2</p>
+                    <p class="text-[11px] text-slate-500">Multiplicaciones</p>
+                  </div>
+                </div>
+                <!-- mini lista -->
+                <div class="px-4 pb-5 pt-4">
+                  <p class="font-display text-[13px] font-bold">Actividad reciente</p>
+                  <div class="mt-2 space-y-2">
+                    <div class="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white p-2.5">
+                      <span class="h-2 w-2 shrink-0 rounded-full bg-emerald-500"></span>
+                      <p class="truncate text-[12px] font-medium text-slate-700">Grupo "G12 Norte" se multiplicó</p>
+                    </div>
+                    <div class="flex items-center gap-2.5 rounded-xl border border-slate-200 bg-white p-2.5">
+                      <span class="h-2 w-2 shrink-0 rounded-full bg-brand-500"></span>
+                      <p class="truncate text-[12px] font-medium text-slate-700">Reporte de Pastor Marcos</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ LOGOS / TRUST ══════════════════ -->
+      <section class="border-b border-slate-200 bg-slate-50 py-6">
+        <p class="mx-auto max-w-content px-5 text-center text-sm text-slate-500">
+          Diseñado, usado y probado en
+          <span class="font-semibold text-slate-700">Iglesia Sion</span> — y listo para tu iglesia.
+        </p>
+      </section>
+
+      <!-- ══════════════════ PROBLEMA ══════════════════ -->
+      <section id="problema" class="mx-auto max-w-content px-5 py-20 lg:py-28">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-sm font-semibold uppercase tracking-wide text-brand-700">El problema</p>
+          <h2 class="font-display mt-3 text-3xl font-bold sm:text-4xl">
+            Tu iglesia crece. Tu información, no se ordena.
+          </h2>
+          <p class="mt-4 text-lg text-slate-600">
+            La mayoría de las iglesias administran su discipulado entre planillas de Excel, grupos de
+            WhatsApp y la memoria de los líderes. Funciona… hasta que dejás de ver quién discipula a
+            quién.
+          </p>
+        </div>
+
+        <div class="reveal mt-14 grid gap-5 sm:grid-cols-3">
+          <div class="rounded-2xl border border-slate-200 p-6">
+            <h3 class="font-display text-lg font-semibold">No ves la jerarquía</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">
+              ¿Quién supervisa a quién? ¿Qué líder reporta? Sin un mapa de liderazgo, la cobertura
+              pastoral tiene huecos.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-6">
+            <h3 class="font-display text-lg font-semibold">Los reportes no llegan</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">
+              Perseguir reportes por WhatsApp cada semana agota. Y los datos que llegan, llegan
+              tarde y sueltos.
+            </p>
+          </div>
+          <div class="rounded-2xl border border-slate-200 p-6">
+            <h3 class="font-display text-lg font-semibold">No medís la multiplicación</h3>
+            <p class="mt-2 text-sm leading-relaxed text-slate-600">
+              El corazón del modelo celular es multiplicar. Si no lo medís, no sabés si está pasando.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ CARACTERÍSTICAS ══════════════════ -->
+      <section id="caracteristicas" class="bg-slate-50 py-20 lg:py-28">
+        <div class="mx-auto max-w-content px-5">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <p class="text-sm font-semibold uppercase tracking-wide text-brand-700">La solución</p>
+            <h2 class="font-display mt-3 text-3xl font-bold sm:text-4xl">
+              Todo tu discipulado, en un solo lugar
+            </h2>
+          </div>
+
+          <div class="mt-16 space-y-16">
+            <!-- feature 1 -->
+            <div class="reveal grid items-center gap-10 lg:grid-cols-2">
+              <div>
+                <span
+                  class="inline-flex items-center gap-2 rounded-lg bg-brand-700/10 px-3 py-1 text-sm font-semibold text-brand-700"
+                  >Discipulado &amp; multiplicación</span
+                >
+                <h3 class="font-display mt-4 text-2xl font-bold sm:text-3xl">
+                  La jerarquía completa, viva y a la vista
+                </h3>
+                <p class="mt-4 text-slate-600">
+                  Líder, Supervisor Auxiliar, Supervisor General, Coordinador y Pastoral. Cada nivel
+                  ve lo que le corresponde, reporta hacia arriba y supervisa hacia abajo. Las
+                  multiplicaciones se registran y se miden.
+                </p>
+                <ul class="mt-5 space-y-2.5">
+                  <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.1 3.1 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
+                    Grupos, miembros y asistencia por célula
+                  </li>
+                  <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.1 3.1 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
+                    Aprobación de reportes en cadena
+                  </li>
+                  <li class="flex items-start gap-2.5 text-sm text-slate-700">
+                    <svg class="mt-0.5 h-5 w-5 shrink-0 text-brand-700" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.1 3.1 6.8-6.8a1 1 0 0 1 1.4 0Z" clip-rule="evenodd"/></svg>
+                    Metas y alertas automáticas
+                  </li>
+                </ul>
+              </div>
+              <div
+                class="order-first rounded-2xl border border-slate-200 bg-white p-6 shadow-sm lg:order-last"
+                aria-label="Captura: panel de discipulado"
+              >
+                <div class="flex items-center justify-between">
+                  <p class="font-display text-sm font-bold">Jerarquía de liderazgo</p>
+                  <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-600">En vivo</span>
+                </div>
+                <svg viewBox="0 0 360 180" class="mt-4 w-full" role="img" aria-label="Diagrama de jerarquía de cinco niveles">
+                  <g stroke="#CBD5E1" stroke-width="2">
+                    <line x1="180" y1="34" x2="100" y2="78" /><line x1="180" y1="34" x2="260" y2="78" />
+                    <line x1="100" y1="78" x2="60" y2="130" /><line x1="100" y1="78" x2="140" y2="130" />
+                    <line x1="260" y1="78" x2="220" y2="130" /><line x1="260" y1="78" x2="300" y2="130" />
+                  </g>
+                  <g font-family="Inter" font-size="10" text-anchor="middle">
+                    <g><circle cx="180" cy="28" r="16" fill="#F59E0B"/><text x="180" y="31" fill="#fff" font-weight="700">P</text></g>
+                    <g><circle cx="100" cy="84" r="13" fill="#1E40AF"/><text x="100" y="87" fill="#fff">C</text></g>
+                    <g><circle cx="260" cy="84" r="13" fill="#1E40AF"/><text x="260" y="87" fill="#fff">C</text></g>
+                    <g fill="#2945C0">
+                      <circle cx="60" cy="136" r="11"/><circle cx="140" cy="136" r="11"/><circle cx="220" cy="136" r="11"/><circle cx="300" cy="136" r="11"/>
+                    </g>
+                  </g>
+                  <text x="180" y="172" text-anchor="middle" font-family="Inter" font-size="10" fill="#64748B">Pastoral → Coordinador → Supervisor → Líder</text>
+                </svg>
+              </div>
+            </div>
+
+            <!-- feature 2 -->
+            <div class="reveal grid items-center gap-10 lg:grid-cols-2">
+              <div
+                class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm"
+                aria-label="Captura: mapa de zonas"
+              >
+                <p class="font-display text-sm font-bold">Mapa de zonas</p>
+                <div class="relative mt-4 h-44 overflow-hidden rounded-xl bg-brand-700/5">
+                  <svg viewBox="0 0 360 176" class="h-full w-full" role="img" aria-label="Mapa con pines de células por zona">
+                    <rect width="360" height="176" fill="#EEF3FF"/>
+                    <path d="M0 120 Q90 90 180 110 T360 100" stroke="#BCCCFF" stroke-width="2" fill="none"/>
+                    <path d="M0 60 Q120 40 240 70 T360 50" stroke="#BCCCFF" stroke-width="2" fill="none"/>
+                    <g>
+                      <g transform="translate(70,60)"><path d="M0-14a10 10 0 0 1 10 10c0 7-10 18-10 18S-10 3-10-4a10 10 0 0 1 10-10Z" fill="#1E40AF"/><circle cy="-4" r="4" fill="#fff"/></g>
+                      <g transform="translate(170,100)"><path d="M0-14a10 10 0 0 1 10 10c0 7-10 18-10 18S-10 3-10-4a10 10 0 0 1 10-10Z" fill="#F59E0B"/><circle cy="-4" r="4" fill="#fff"/></g>
+                      <g transform="translate(250,72)"><path d="M0-14a10 10 0 0 1 10 10c0 7-10 18-10 18S-10 3-10-4a10 10 0 0 1 10-10Z" fill="#1E40AF"/><circle cy="-4" r="4" fill="#fff"/></g>
+                      <g transform="translate(300,120)"><path d="M0-14a10 10 0 0 1 10 10c0 7-10 18-10 18S-10 3-10-4a10 10 0 0 1 10-10Z" fill="#1E40AF"/><circle cy="-4" r="4" fill="#fff"/></g>
+                    </g>
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <span class="inline-flex items-center gap-2 rounded-lg bg-brand-700/10 px-3 py-1 text-sm font-semibold text-brand-700">Zonas &amp; territorio</span>
+                <h3 class="font-display mt-4 text-2xl font-bold sm:text-3xl">
+                  Tu ciudad, organizada por zonas
+                </h3>
+                <p class="mt-4 text-slate-600">
+                  Asigná líderes a zonas geográficas, ubicá cada célula en el mapa y entendé tu
+                  cobertura de un vistazo. Ideal para planificar dónde plantar el próximo grupo.
+                </p>
+              </div>
+            </div>
+
+            <!-- feature 3 -->
+            <div class="reveal grid items-center gap-10 lg:grid-cols-2">
+              <div>
+                <span class="inline-flex items-center gap-2 rounded-lg bg-brand-700/10 px-3 py-1 text-sm font-semibold text-brand-700">Reportes &amp; trazabilidad</span>
+                <h3 class="font-display mt-4 text-2xl font-bold sm:text-3xl">
+                  Decisiones con datos, no con corazonadas
+                </h3>
+                <p class="mt-4 text-slate-600">
+                  Crecimiento, asistencia, demografía y actividad — exportables a CSV o PDF. Cada
+                  reporte queda registrado, así sabés quién generó qué y cuándo.
+                </p>
+              </div>
+              <div class="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm" aria-label="Captura: reportes">
+                <p class="font-display text-sm font-bold">Crecimiento · 24 semanas</p>
+                <svg viewBox="0 0 360 150" class="mt-4 w-full" role="img" aria-label="Gráfico de crecimiento ascendente">
+                  <defs><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1E40AF" stop-opacity="0.25"/><stop offset="1" stop-color="#1E40AF" stop-opacity="0"/></linearGradient></defs>
+                  <path d="M10 120 L70 105 L130 110 L190 80 L250 70 L310 40 L350 30 L350 140 L10 140 Z" fill="url(#g)"/>
+                  <path d="M10 120 L70 105 L130 110 L190 80 L250 70 L310 40 L350 30" fill="none" stroke="#1E40AF" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="350" cy="30" r="4" fill="#F59E0B"/>
+                </svg>
+                <div class="mt-3 flex gap-2">
+                  <span class="rounded-lg bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600">CSV</span>
+                  <span class="rounded-lg bg-slate-100 px-2.5 py-1 text-[11px] font-semibold text-slate-600">PDF</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ MÓDULOS ══════════════════ -->
+      <section id="modulos" class="mx-auto max-w-content px-5 py-20 lg:py-28">
+        <div class="reveal mx-auto max-w-2xl text-center">
+          <p class="text-sm font-semibold uppercase tracking-wide text-brand-700">Modular</p>
+          <h2 class="font-display mt-3 text-3xl font-bold sm:text-4xl">
+            Instalá solo lo que tu iglesia necesita
+          </h2>
+          <p class="mt-4 text-lg text-slate-600">
+            JETRO crece con tu ministerio. Activá módulos cuando los necesites — y vienen más en
+            camino, incluyendo desarrollos a medida.
+          </p>
+        </div>
+
+        <div class="reveal mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <!-- módulo activo -->
+          <article class="rounded-2xl border border-slate-200 p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display text-lg font-semibold">Base</h3>
+              <span class="rounded-full bg-emerald-500/10 px-2 py-0.5 text-[11px] font-semibold text-emerald-600">Incluido</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-600">Usuarios, roles, permisos y configuración de la iglesia.</p>
+          </article>
+          <article class="rounded-2xl border border-brand-700/30 bg-brand-700/[0.03] p-5">
+            <div class="flex items-center justify-between">
+              <h3 class="font-display text-lg font-semibold">Discipulado</h3>
+              <span class="rounded-full bg-brand-700/10 px-2 py-0.5 text-[11px] font-semibold text-brand-700">Estrella</span>
+            </div>
+            <p class="mt-2 text-sm text-slate-600">Células, jerarquía, asistencia, metas y multiplicación.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="font-display text-lg font-semibold">Zonas</h3>
+            <p class="mt-2 text-sm text-slate-600">Territorios geográficos con mapa y asignación de líderes.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="font-display text-lg font-semibold">Eventos</h3>
+            <p class="mt-2 text-sm text-slate-600">Calendario, inscripciones y RSVP para tus actividades.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="font-display text-lg font-semibold">Músicos</h3>
+            <p class="mt-2 text-sm text-slate-600">Repertorio, asignación de servicios e instrumentos del equipo de alabanza.</p>
+          </article>
+          <article class="rounded-2xl border border-slate-200 p-5">
+            <h3 class="font-display text-lg font-semibold">Reportes</h3>
+            <p class="mt-2 text-sm text-slate-600">Analítica y trazabilidad con exportación a CSV y PDF.</p>
+          </article>
+          <article class="rounded-2xl border border-dashed border-slate-300 p-5 sm:col-span-2 lg:col-span-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div>
+                <h3 class="font-display text-lg font-semibold text-slate-700">Tu próximo módulo</h3>
+                <p class="mt-1 text-sm text-slate-500">Finanzas, comunicación, transmisión en vivo, o un módulo a medida para tu iglesia.</p>
+              </div>
+              <span class="rounded-full border border-slate-300 px-3 py-1 text-xs font-semibold text-slate-500">Próximamente · Custom</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ══════════════════ CÓMO FUNCIONA ══════════════════ -->
+      <section class="bg-brand-900 py-20 text-white lg:py-28">
+        <div class="mx-auto max-w-content px-5">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <h2 class="font-display text-3xl font-bold sm:text-4xl">Empezás en tres pasos</h2>
+          </div>
+          <ol class="reveal mt-14 grid gap-8 sm:grid-cols-3">
+            <li>
+              <span class="font-display grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-lg font-bold text-gold-400">1</span>
+              <h3 class="font-display mt-4 text-xl font-semibold">Configurás tu iglesia</h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/70">Datos de la iglesia, módulos que querés activar y los roles de tu equipo.</p>
+            </li>
+            <li>
+              <span class="font-display grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-lg font-bold text-gold-400">2</span>
+              <h3 class="font-display mt-4 text-xl font-semibold">Cargás tu liderazgo</h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/70">Líderes, supervisores y zonas. JETRO arma el mapa de tu jerarquía.</p>
+            </li>
+            <li>
+              <span class="font-display grid h-11 w-11 place-items-center rounded-xl bg-white/10 text-lg font-bold text-gold-400">3</span>
+              <h3 class="font-display mt-4 text-xl font-semibold">Multiplicás con datos</h3>
+              <p class="mt-2 text-sm leading-relaxed text-white/70">Tu equipo reporta desde el celular y vos ves todo crecer en tiempo real.</p>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <!-- ══════════════════ TESTIMONIO ══════════════════ -->
+      <section class="mx-auto max-w-content px-5 py-20 lg:py-28">
+        <figure class="reveal mx-auto max-w-3xl text-center">
+          <blockquote class="font-display text-2xl font-semibold leading-snug text-ink sm:text-3xl">
+            “Por primera vez veo toda la estructura de discipulado de la iglesia en una sola
+            pantalla. Lo que antes me tomaba semanas reunir, ahora lo tengo al instante.”
+          </blockquote>
+          <figcaption class="mt-6 text-sm text-slate-600">
+            <span class="font-semibold text-ink">Liderazgo pastoral</span> — Iglesia Sion
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- ══════════════════ PRECIO ══════════════════ -->
+      <section id="precio" class="bg-slate-50 py-20 lg:py-28">
+        <div class="mx-auto max-w-content px-5">
+          <div class="reveal mx-auto max-w-2xl text-center">
+            <p class="text-sm font-semibold uppercase tracking-wide text-brand-700">Precio</p>
+            <h2 class="font-display mt-3 text-3xl font-bold sm:text-4xl">Una inversión, no un gasto</h2>
+            <p class="mt-4 text-lg text-slate-600">
+              Planes por iglesia, accesibles para ministerios de cualquier tamaño. Estamos definiendo
+              los planes finales — sumate a la lista y obtené condiciones de fundador.
+            </p>
+          </div>
+
+          <div class="reveal mx-auto mt-12 grid max-w-4xl gap-5 sm:grid-cols-2">
+            <div class="rounded-2xl border border-slate-200 bg-white p-7">
+              <h3 class="font-display text-xl font-bold">Iglesia</h3>
+              <p class="mt-2 text-sm text-slate-600">Para iglesias que arrancan con el modelo celular.</p>
+              <p class="font-display mt-5 text-3xl font-bold">Pronto</p>
+              <a href="#contacto" class="mt-6 block rounded-xl border border-brand-700 px-4 py-3 text-center text-sm font-semibold text-brand-700 transition hover:bg-brand-700 hover:text-white">Sumarme a la lista</a>
+            </div>
+            <div class="rounded-2xl border-2 border-brand-700 bg-white p-7 shadow-sm">
+              <div class="flex items-center gap-2">
+                <h3 class="font-display text-xl font-bold">Ministerio</h3>
+                <span class="rounded-full bg-gold-500/15 px-2 py-0.5 text-[11px] font-semibold text-gold-600">Recomendado</span>
+              </div>
+              <p class="mt-2 text-sm text-slate-600">Todos los módulos, soporte y desarrollos a medida.</p>
+              <p class="font-display mt-5 text-3xl font-bold">Pronto</p>
+              <a href="#contacto" class="mt-6 block rounded-xl bg-brand-700 px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-brand-800">Solicitar demo</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ══════════════════ CTA / CONTACTO ══════════════════ -->
+      <section id="contacto" class="bg-brand-700 py-20 text-white lg:py-24">
+        <div class="mx-auto max-w-2xl px-5 text-center">
+          <h2 class="font-display text-3xl font-bold sm:text-4xl">
+            Llevá el discipulado de tu iglesia al siguiente nivel
+          </h2>
+          <p class="mt-4 text-lg text-white/80">
+            Dejanos tu correo y coordinamos una demo. Sin compromiso.
+          </p>
+          <form
+            class="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
+            action="mailto:hola@jetro.app"
+            method="post"
+            enctype="text/plain"
+          >
+            <label for="email" class="sr-only">Tu correo electrónico</label>
+            <input
+              id="email"
+              name="email"
+              type="email"
+              required
+              placeholder="tu@iglesia.org"
+              class="w-full rounded-xl border-0 px-4 py-3.5 text-ink placeholder:text-slate-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gold-400"
+            />
+            <button
+              type="submit"
+              class="shrink-0 rounded-xl bg-gold-500 px-6 py-3.5 font-semibold text-ink transition hover:bg-gold-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Solicitar demo
+            </button>
+          </form>
+          <p class="mt-4 text-xs text-white/60">También por WhatsApp o correo a hola@jetro.app</p>
+        </div>
+      </section>
+    </main>
+
+    <!-- ══════════════════ FOOTER ══════════════════ -->
+    <footer class="border-t border-slate-200 bg-white py-12">
+      <div class="mx-auto flex max-w-content flex-col items-center justify-between gap-6 px-5 sm:flex-row">
+        <div class="flex items-center gap-2.5">
+          <span class="grid h-8 w-8 place-items-center rounded-lg bg-brand-700">
+            <svg viewBox="0 0 200 200" class="h-8 w-8" aria-hidden="true">
+              <g fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M86 64 L150 64" stroke-width="22" />
+                <path d="M124 64 L124 124 Q124 150 96 150 Q70 150 68 126" stroke-width="26" />
+              </g>
+              <circle cx="150" cy="64" r="13" fill="#F59E0B" />
+            </svg>
+          </span>
+          <span class="font-display text-lg font-bold">JETRO</span>
+        </div>
+        <p class="text-sm text-slate-500">
+          Hecho con propósito en Iglesia Sion · © <span id="year">2026</span> JETRO
+        </p>
+        <a href="#contacto" class="text-sm font-semibold text-brand-700 hover:text-brand-800">Solicitar demo →</a>
+      </div>
+    </footer>
+
+    <script>
+      // Año dinámico
+      document.getElementById('year').textContent = new Date().getFullYear();
+
+      // Reveal on scroll
+      const io = new IntersectionObserver(
+        entries => {
+          entries.forEach(e => {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              io.unobserve(e.target);
+            }
+          });
+        },
+        { rootMargin: '0px 0px -10% 0px' }
+      );
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    </script>
+
+    <!-- Red de nodos 3D en el hero (multiplicación de células). Deferida: no bloquea el LCP. -->
+    <script type="module">
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      const canvas = document.getElementById('bg3d');
+      if (canvas && !prefersReduced) {
+        try {
+          const THREE = await import('https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js');
+
+          const renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+          renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+
+          const scene = new THREE.Scene();
+          const camera = new THREE.PerspectiveCamera(60, 1, 0.1, 100);
+          camera.position.z = 13;
+
+          const group = new THREE.Group();
+          scene.add(group);
+
+          const N = 80;
+          const BOX = 16;
+          const CONNECT = 3.0;
+          const nodes = [];
+          const positions = new Float32Array(N * 3);
+          const colors = new Float32Array(N * 3);
+          const white = new THREE.Color('#dbe4ff');
+          const gold = new THREE.Color('#F59E0B');
+
+          for (let i = 0; i < N; i++) {
+            const p = new THREE.Vector3(
+              (Math.random() - 0.5) * BOX,
+              (Math.random() - 0.5) * BOX,
+              (Math.random() - 0.5) * BOX
+            );
+            const v = new THREE.Vector3(
+              (Math.random() - 0.5) * 0.6,
+              (Math.random() - 0.5) * 0.6,
+              (Math.random() - 0.5) * 0.6
+            );
+            nodes.push({ p, v });
+            positions.set([p.x, p.y, p.z], i * 3);
+            const c = i % 13 === 0 ? gold : white; // ~1 de cada 13 dorado
+            colors.set([c.r, c.g, c.b], i * 3);
+          }
+
+          // textura circular para puntos redondos (en vez de cuadrados)
+          const dc = document.createElement('canvas');
+          dc.width = dc.height = 64;
+          const dctx = dc.getContext('2d');
+          const grd = dctx.createRadialGradient(32, 32, 0, 32, 32, 32);
+          grd.addColorStop(0, 'rgba(255,255,255,1)');
+          grd.addColorStop(0.65, 'rgba(255,255,255,1)');
+          grd.addColorStop(1, 'rgba(255,255,255,0)');
+          dctx.fillStyle = grd;
+          dctx.beginPath();
+          dctx.arc(32, 32, 32, 0, Math.PI * 2);
+          dctx.fill();
+          const dotTex = new THREE.CanvasTexture(dc);
+
+          const ptsGeo = new THREE.BufferGeometry();
+          ptsGeo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+          ptsGeo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+          const pts = new THREE.Points(
+            ptsGeo,
+            new THREE.PointsMaterial({
+              size: 0.22,
+              map: dotTex,
+              alphaTest: 0.1,
+              vertexColors: true,
+              transparent: true,
+              opacity: 0.9,
+              depthWrite: false,
+              sizeAttenuation: true,
+            })
+          );
+          group.add(pts);
+
+          const maxLines = N * 6;
+          const linePos = new Float32Array(maxLines * 2 * 3);
+          const lineGeo = new THREE.BufferGeometry();
+          lineGeo.setAttribute('position', new THREE.BufferAttribute(linePos, 3));
+          const lines = new THREE.LineSegments(
+            lineGeo,
+            new THREE.LineBasicMaterial({ color: '#9db4ff', transparent: true, opacity: 0.22 })
+          );
+          group.add(lines);
+
+          function resize() {
+            const w = canvas.clientWidth || canvas.parentElement.clientWidth;
+            const h = canvas.clientHeight || canvas.parentElement.clientHeight;
+            renderer.setSize(w, h, false);
+            camera.aspect = w / h;
+            camera.updateProjectionMatrix();
+          }
+          resize();
+          window.addEventListener('resize', resize);
+
+          const clock = new THREE.Clock();
+          let running = true;
+          document.addEventListener('visibilitychange', () => {
+            running = !document.hidden;
+            if (running) loop();
+          });
+
+          function loop() {
+            if (!running) return;
+            const dt = Math.min(clock.getDelta(), 0.05);
+
+            // drift + rebote dentro del box
+            for (let i = 0; i < N; i++) {
+              const n = nodes[i];
+              n.p.addScaledVector(n.v, dt);
+              ['x', 'y', 'z'].forEach(a => {
+                if (n.p[a] > BOX / 2 || n.p[a] < -BOX / 2) n.v[a] *= -1;
+              });
+              positions.set([n.p.x, n.p.y, n.p.z], i * 3);
+            }
+            ptsGeo.attributes.position.needsUpdate = true;
+
+            // conexiones cercanas
+            let li = 0;
+            const maxV = maxLines * 2 * 3;
+            for (let i = 0; i < N && li < maxV; i++) {
+              for (let j = i + 1; j < N && li < maxV; j++) {
+                if (nodes[i].p.distanceTo(nodes[j].p) < CONNECT) {
+                  linePos[li++] = nodes[i].p.x;
+                  linePos[li++] = nodes[i].p.y;
+                  linePos[li++] = nodes[i].p.z;
+                  linePos[li++] = nodes[j].p.x;
+                  linePos[li++] = nodes[j].p.y;
+                  linePos[li++] = nodes[j].p.z;
+                }
+              }
+            }
+            lineGeo.setDrawRange(0, li / 3);
+            lineGeo.attributes.position.needsUpdate = true;
+
+            group.rotation.y += dt * 0.05;
+            group.rotation.x = Math.sin(clock.elapsedTime * 0.1) * 0.1;
+
+            renderer.render(scene, camera);
+            requestAnimationFrame(loop);
+          }
+          loop();
+        } catch (e) {
+          /* sin WebGL o falló el import: el hero queda lindo igual con el fondo de puntos */
+        }
+      }
+    </script>
+  </body>
+</html>
