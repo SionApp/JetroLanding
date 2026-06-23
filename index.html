@@ -730,12 +730,11 @@
           <p class="mt-4 text-lg text-white/80">
             Dejanos tu correo y coordinamos una demo. Sin compromiso.
           </p>
-          <form
-            class="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row"
-            action="mailto:hola@jetro.app"
-            method="post"
-            enctype="text/plain"
-          >
+          <!-- Web3Forms: poné tu access_key (gratis en web3forms.com, llega a tu mail). -->
+          <form id="lead-form" class="mx-auto mt-8 flex max-w-md flex-col gap-3 sm:flex-row">
+            <input type="hidden" name="access_key" value="TU_WEB3FORMS_ACCESS_KEY" />
+            <input type="hidden" name="subject" value="Nuevo lead de la landing de JETRO" />
+            <input type="hidden" name="from_name" value="Landing JETRO" />
             <label for="email" class="sr-only">Tu correo electrónico</label>
             <input
               id="email"
@@ -747,12 +746,14 @@
             />
             <button
               type="submit"
-              class="shrink-0 rounded-xl bg-gold-500 px-6 py-3.5 font-semibold text-ink transition hover:bg-gold-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+              id="lead-submit"
+              class="shrink-0 rounded-xl bg-gold-500 px-6 py-3.5 font-semibold text-ink transition hover:bg-gold-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white disabled:opacity-60"
             >
               Solicitar demo
             </button>
           </form>
-          <p class="mt-4 text-xs text-white/60">También por WhatsApp o correo a hola@jetro.app</p>
+          <p id="lead-status" class="mt-4 text-sm" role="status" aria-live="polite"></p>
+          <p class="mt-1 text-xs text-white/60">También por WhatsApp o correo a hola@jetro.app</p>
         </div>
       </section>
     </main>
@@ -799,6 +800,39 @@
     </script>
 
     <script>
+      // ── Lead form (Web3Forms) ──
+      const leadForm = document.getElementById('lead-form');
+      leadForm?.addEventListener('submit', async e => {
+        e.preventDefault();
+        const status = document.getElementById('lead-status');
+        const btn = document.getElementById('lead-submit');
+        const key = leadForm.access_key.value;
+        // ponytail: sin key configurada, caemos a mailto (no perdemos el lead)
+        if (key === 'TU_WEB3FORMS_ACCESS_KEY') {
+          location.href = `mailto:hola@jetro.app?subject=Quiero una demo de JETRO&body=Mi correo: ${leadForm.email.value}`;
+          return;
+        }
+        btn.disabled = true;
+        status.textContent = 'Enviando…';
+        status.className = 'mt-4 text-sm text-white/80';
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+            body: JSON.stringify(Object.fromEntries(new FormData(leadForm))),
+          });
+          if (!(await res.json()).success) throw new Error();
+          leadForm.reset();
+          status.textContent = '¡Listo! Te contactamos pronto. 🙌';
+          status.className = 'mt-4 text-sm font-semibold text-gold-400';
+        } catch {
+          status.textContent = 'Hubo un error. Escribinos a hola@jetro.app';
+          status.className = 'mt-4 text-sm text-red-200';
+        } finally {
+          btn.disabled = false;
+        }
+      });
+
       // ── Video modal ──
       // Para activar el video real: poné el YouTube ID en data-youtube del #video-wrapper
       // Ej: <div id="video-wrapper" data-youtube="dQw4w9WgXcQ">
